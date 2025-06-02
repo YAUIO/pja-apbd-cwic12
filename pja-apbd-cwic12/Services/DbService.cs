@@ -14,7 +14,7 @@ public class DbService(Tutorial12Context context) : IDbService
             PageNum = page,
             PageSize = paginate,
             AllPages = context.Trips.Count() / paginate + context.Trips.Count() % paginate == 0 ? 0 : 1,
-            Trips = await context.Trips.Select(e => new TripGetDTO()
+            Trips = (await context.Trips.Select(e => new TripGetDTO()
             {
                 Name = e.Name,
                 Description = e.Description,
@@ -31,7 +31,11 @@ public class DbService(Tutorial12Context context) : IDbService
                         FirstName = c.FirstName,
                         LastName = c.LastName
                     }).ToList()
-            }).ToListAsync()
+            }
+            ).Chunk(paginate)
+            .ToArrayAsync())
+                [page]
+                .ToList()
         };
     }
 
@@ -55,7 +59,7 @@ public class DbService(Tutorial12Context context) : IDbService
             .Where(t => t.IdTrip == idTrip)
             .FirstAsync();
 
-        if (t.DateFrom <= DateOnly.FromDateTime(DateTime.Today)) throw new TripAlreadyStartedException();
+        if (t.DateFrom <= DateTime.Today) throw new TripAlreadyStartedException();
         
         await context.Clients.AddAsync(new Client()
         {
