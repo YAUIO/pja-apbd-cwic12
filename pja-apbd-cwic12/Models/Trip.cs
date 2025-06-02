@@ -8,9 +8,9 @@ public class Trip
 
     public string Description { get; set; } = null!;
 
-    public DateOnly DateFrom { get; set; }
+    public DateTime DateFrom { get; set; }
 
-    public DateOnly DateTo { get; set; }
+    public DateTime DateTo { get; set; }
 
     public int MaxPeople { get; set; }
 
