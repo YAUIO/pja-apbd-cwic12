@@ -10,9 +10,16 @@ namespace pja_apbd_cwic12.Controllers;
 public class TripsController(IDbService service) : ControllerBase
 {
     [HttpGet("{page?}")]
-    public async Task<IActionResult> GetTripsAsync(int page = 0, int paginate = 10)
+    public async Task<IActionResult> GetTripsAsync(int page = 1, int paginate = 10)
     {
-        return Ok(await service.GetAllTripsAsync(page, paginate));
+        try
+        {
+            return Ok(await service.GetAllTripsAsync(page, paginate));
+        }
+        catch (IndexOutOfRangeException _)
+        {
+            return BadRequest("No such page");
+        }
     }
 
     [HttpPost("{idTrip}/clients")]
