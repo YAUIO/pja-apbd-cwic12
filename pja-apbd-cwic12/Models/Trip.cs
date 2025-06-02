@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace pja_apbd_cwic12.Models;
 
-namespace pja_apbd_cwic12.Models;
-
-public partial class Trip
+public class Trip
 {
     public int IdTrip { get; set; }
 
@@ -11,9 +8,9 @@ public partial class Trip
 
     public string Description { get; set; } = null!;
 
-    public DateTime DateFrom { get; set; }
+    public DateOnly DateFrom { get; set; }
 
-    public DateTime DateTo { get; set; }
+    public DateOnly DateTo { get; set; }
 
     public int MaxPeople { get; set; }
 

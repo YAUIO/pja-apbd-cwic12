@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace pja_apbd_cwic12.Models;
 
-namespace pja_apbd_cwic12.Models;
-
-public partial class ClientTrip
+public class ClientTrip
 {
     public int IdClient { get; set; }
 

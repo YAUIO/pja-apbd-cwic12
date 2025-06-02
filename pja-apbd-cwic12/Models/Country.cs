@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace pja_apbd_cwic12.Models;
 
-namespace pja_apbd_cwic12.Models;
-
-public partial class Country
+public class Country
 {
     public int IdCountry { get; set; }
 
